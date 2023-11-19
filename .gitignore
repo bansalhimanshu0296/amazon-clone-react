@@ -4,6 +4,10 @@
 /node_modules
 /.pnp
 .pnp.js
+/functions/node_modules
+/functions/.gitignore
+/functions/.eslintrc.js
+/functions/ui-debug.log
 
 # testing
 /coverage

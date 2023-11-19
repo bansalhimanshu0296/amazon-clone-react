@@ -6,7 +6,8 @@ import Login from './components/Login';
 import { useEffect } from 'react';
 import { auth } from './firbase';
 import { useStateValue } from './StateProvider';
-
+import PaymentContainer from './route_container/PaymentContainer';
+import OrdersContainer from './route_container/OrdersContainer';
 
 function App() {
 
@@ -35,6 +36,8 @@ function App() {
           <Route path='/' Component={HomeContainer}/>
           <Route path='/checkout' Component={CheckoutContainer}/>
           <Route path='/login' Component={Login} />
+          <Route path='/payment' Component={PaymentContainer}/>
+          <Route path='/orders' Component={OrdersContainer} /> 
         </Routes>
       </div>
     </Router>
