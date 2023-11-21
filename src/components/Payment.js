@@ -29,6 +29,9 @@ function Payment() {
 
   useEffect(()=>{
     const getClientSecret = async () =>{
+        if(!user){
+            navigate("/login")
+        }
         const response = await axios({
             method: 'post',
             url: `/payments/create?total=${getBasketTotal(basket) * 100}`

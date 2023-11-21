@@ -26,8 +26,12 @@ function App() {
           type: 'SET_USER',
           user: null
         })
+        dispatch({
+          type: 'EMPTY_BASKET'
+        })
       }
     })
+        
   },[])
   return (
     <Router>

@@ -1,8 +1,7 @@
-import React from 'react'
+import React, {forwardRef} from 'react'
 import '../css/CheckoutProduct.css'
 
-function CheckoutProduct({ id, image, title, price, rating, dispatch }) {
-  
+const CheckoutProduct =  forwardRef(({ id, image, title, price, rating, dispatch }, ref) => {
   const removeFromBasket = () =>{
     dispatch({
         type: 'REMOVE_FROM_BASKET',
@@ -11,7 +10,7 @@ function CheckoutProduct({ id, image, title, price, rating, dispatch }) {
     
   }
   return (
-    <div className='checkoutProduct'>
+    <div ref={ref} className='checkoutProduct'>
         <img className='checkoutProduct__image' src={image} alt={title}/>
         <div className='checkoutProduct__info'>
             <p className='checkoutProduct__title'>{title}</p>
@@ -32,6 +31,6 @@ function CheckoutProduct({ id, image, title, price, rating, dispatch }) {
         </div>
     </div>
   )
-}
+})
 
 export default CheckoutProduct

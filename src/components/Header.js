@@ -5,6 +5,9 @@ import ShoppingBasketIcon from '@mui/icons-material/ShoppingBasket';
 import { Link } from 'react-router-dom';
 import { useStateValue } from '../StateProvider';
 import { auth } from '../firbase';
+import { db } from '../firbase';
+import { doc, setDoc } from "firebase/firestore"; 
+
 
 function Header() {
 
@@ -12,6 +15,12 @@ function Header() {
 
   const handleAuthentication = () =>{
     if(user){
+        setDoc(doc(db, 'users', user?.uid),{
+            basket: basket
+        })
+        dispatch({
+            type: 'EMPTY_BASKET'
+        })
         auth.signOut()
     }
   } 

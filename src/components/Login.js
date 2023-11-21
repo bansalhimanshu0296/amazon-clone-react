@@ -3,20 +3,32 @@ import React, { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import '../css/Login.css'
 import { auth } from '../firbase'
+import { setDoc, doc, getDoc } from "firebase/firestore";
+import { db } from "../firbase";
+import { useStateValue } from '../StateProvider'
+
 
 function Login() {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const navigate = useNavigate()
+  const [{basket}, dispatch] = useStateValue()
 
   const signIn = (e) =>{
     e.preventDefault();
     signInWithEmailAndPassword(auth, email, password).then((auth)=>{
         if(auth){
+            const docSnap = getDoc(doc(db, "users", auth.user?.uid))
+            docSnap.then((data)=>{
+                dispatch({
+                    type: 'SET_BASKET',
+                    user:  auth.user?.uid,
+                    basket: data.data().basket
+                })
+            })
             navigate('/')
         }
     }).catch(error=>alert(error.message));
-
   }
 
   const register = (e) =>{
@@ -24,6 +36,9 @@ function Login() {
     createUserWithEmailAndPassword(auth, email, password).then(
         (auth) => {
             if(auth){
+                setDoc(doc(db, 'users', auth.user?.uid),{
+                    basket: basket
+                })
                 navigate('/')
             }
         }
