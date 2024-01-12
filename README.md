@@ -1,6 +1,18 @@
 # Getting Started with Create React App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Install Dependencies
+
+`npm install`
+
+## Configure the environment varables
+
+```
+FIREBASE_PROJECT_ID: Firebase ProjectId
+FIREBASE_CLIENT_EMAIL: Firebase Project Email
+FIREBASE_PRIVATE_KEY: Firebase Project Private Key
+```
+
+Also configure firebaseConfig in firebase.js
 
 ## Available Scripts
 
